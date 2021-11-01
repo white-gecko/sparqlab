@@ -85,8 +85,8 @@ sp:year skos:prefLabel "year" .
 #################
 
 exercise:classes a sp:Query ;
-  rdfs:label "Instanciované třídy"@cs ;
-  rdfs:comment "Jaké třídy mají v datech alespoň jednu instanci? Vypište je tak, aby se neopakovaly."@cs ;
+  rdfs:label "Instanciované třídy"@cs, "Instance classes"@en ;
+  rdfs:comment "Jaké třídy mají v datech alespoň jednu instanci? Vypište je tak, aby se neopakovaly."@cs , "What classes have at least one instance in the data? List them so that they do not recur."@en ;
   sp:text """
 SELECT DISTINCT ?class
 WHERE {
@@ -2031,7 +2031,7 @@ PREFIX skos:           <http://www.w3.org/2004/02/skos/core#>
 SELECT (AVG(?pension) AS ?medianPension)
 WHERE {
   {
-    SELECT ?pension 
+    SELECT ?pension
            (abs(COUNT(DISTINCT ?higherPensionRefArea) - COUNT(DISTINCT ?lowerPensionRefArea)) AS ?diff)
     WHERE {
       GRAPH <https://data.cssz.cz/resource/dataset/pomocne-ciselniky> {
@@ -2053,7 +2053,7 @@ WHERE {
           cssz-dimension:druh-duchodu ?pensionKind ;
           cssz-measure:prumerna-vyse-duchodu-v-kc ?lowerPension .
         FILTER (?pension > ?lowerPension)
-    
+
         [] cssz-dimension:refPeriod day:2015-12-31 ;
           cssz-dimension:pohlavi sdmx-code:sex-T ;
           cssz-dimension:refArea ?higherPensionRefArea ;
@@ -2094,7 +2094,7 @@ WHERE {
       cssz-dimension:druh-duchodu ?pensionKind ;
       cssz-dimension:refArea ?pragueDistrict ;
       cssz-measure:prumerna-vyse-duchodu-v-kc ?pension .
-    
+
     [] cssz-dimension:refPeriod day:2015-12-31 ;
       cssz-dimension:pohlavi sdmx-code:sex-T ;
       cssz-dimension:druh-duchodu ?pensionKind ;
@@ -2129,13 +2129,13 @@ WHERE {
       cssz-dimension:druh-duchodu ?disabilityPensionLevel1 ;
       cssz-dimension:refArea <https://data.cssz.cz/resource/ruian/staty/1> ;
       cssz-measure:prumerny-vek ?avgAgeLevel1 .
-    
+
     [] cssz-dimension:refPeriod ?refPeriod ;
       cssz-dimension:pohlavi sdmx-code:sex-T ;
       cssz-dimension:druh-duchodu ?disabilityPensionLevel2 ;
       cssz-dimension:refArea <https://data.cssz.cz/resource/ruian/staty/1> ;
       cssz-measure:prumerny-vek ?avgAgeLevel2 .
-    
+
     [] cssz-dimension:refPeriod ?refPeriod ;
       cssz-dimension:pohlavi sdmx-code:sex-T ;
       cssz-dimension:druh-duchodu ?disabilityPensionLevel3 ;

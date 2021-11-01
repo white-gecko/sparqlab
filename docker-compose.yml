@@ -3,15 +3,23 @@ services:
   app:
     build: .
     depends_on:
-      - stardog
+      - quitstore
     environment:
 #      - "APP_CONTEXT=/sparqlab"
-      - "SPARQL_ENDPOINT=http://stardog:5820/sparqlab/query"
+#      - "SPARQL_ENDPOINT=http://stardog:5820/sparqlab/query"
+      - "SPARQL_ENDPOINT=http://quitstore:8080/sparql"
     ports:
       - "3000:3000"
     restart: always
-  stardog:
-    image: jindrichmynarz/sparqlab-stardog:1
+#  stardog:
+#    image: jindrichmynarz/sparqlab-stardog:1
+#    ports:
+#      - "5820:5820"
+#    restart: always
+  quitstore:
+    image: aksw/quitstore:feature_fixUwsgi
     ports:
-      - "5820:5820"
+      - "8080:8080"
     restart: always
+    volumes:
+    - ../graph:/data
